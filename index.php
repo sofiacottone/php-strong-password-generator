@@ -1,12 +1,7 @@
-<?php
-$userPswLength = $_GET['psw-length'] ?? 0;
+<?php require_once __DIR__ . '/partials/functions.php'; ?>
 
-function generatePassword($chars)
-{
-    for ($i = 0; $i < $chars; $i++) {
-        echo chr(rand(33, 126));
-    }
-}
+<?php
+$userPswLength = $_GET['psw-length'] ?? '';
 ?>
 
 <!DOCTYPE html>
