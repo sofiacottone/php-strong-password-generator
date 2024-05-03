@@ -1,5 +1,5 @@
 <?php
-$userPswLength = $_GET['psw-length'];
+$userPswLength = $_GET['psw-length'] ?? 0;
 
 function generatePassword($chars)
 {
