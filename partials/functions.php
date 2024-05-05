@@ -1,7 +1,6 @@
 <?php
-function generatePassword($chars)
+function generatePassword($array, $chars)
 {
-    for ($i = 0; $i < $chars; $i++) {
-        echo chr(rand(33, 126));
-    }
+    $allCharsString = implode($array);
+    return substr(str_shuffle($allCharsString), 0, $chars);
 }
