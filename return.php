@@ -2,6 +2,7 @@
 <?php
 session_start();
 $userPswLength = $_SESSION['pswLength'];
+$filteredArray = $_SESSION['filter'];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,24 +19,44 @@ $userPswLength = $_SESSION['pswLength'];
     <title>Document</title>
 </head>
 
-<body>
+<body class="bg-warning-subtle">
     <div class="container">
-        <h1 class="text-center py-3">Strong Password Generator</h1>
+        <h1 class="text-center fw-bold py-3">Strong Password Generator</h1>
+        <div class="position-absolute top-0 mt-3">
+            <img width="48" height="48" src="https://img.icons8.com/doodle/48/ladybird--v2.png" alt="ladybird--v2" />
+        </div>
+
         <div class="vstack gap-3">
             <div class="hstack gap-1 col m-auto">
                 <div class="py-3 m-auto">Your Password: </div>
-                <div class="bg-success-subtle py-2 px-3 rounded-3">
-                    <?php echo generatePassword($userPswLength); ?>
+                <div id="finalPsw" class="bg-success-subtle py-2 px-3 rounded-3 shadow text-break">
+                    <?php echo generatePassword($filteredArray, $userPswLength); ?>
                 </div>
+                <a onclick="copyToClipboard()" class="btn btn-light icon-link icon-link-hover shadow text-decoration-none ms-3 py-2 px-3" style="--bs-icon-link-transform: translate3d(0, -.125rem, 0);" href="#">
+                    <i class="fa-regular fa-copy"></i>
+                </a>
             </div>
 
-            <a href="index.php" class="btn btn-dark icon-link icon-link-hover text-decoration-none text-white m-auto">
+            <a href="index.php" class="btn btn-dark icon-link icon-link-hover shadow text-decoration-none text-white m-auto">
                 Generate New Password
                 <i class="bi fa-solid fa-arrow-right"></i>
             </a>
         </div>
     </div>
 
+
+    <script>
+        function copyToClipboard() {
+            // Get the text field
+            let copyText = document.getElementById("finalPsw");
+
+            // Copy the text inside the text field
+            navigator.clipboard.writeText(copyText.innerHTML.trim());
+
+            // Alert the copied text
+            alert("Copied");
+        }
+    </script>
 </body>
 
 </html>
